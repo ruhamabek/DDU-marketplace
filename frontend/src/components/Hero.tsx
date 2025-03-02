@@ -81,7 +81,7 @@ function Hero() {
       <div className="relative flex-1 mt-8 lg:mt-0 rounded-lg z-10">
         <img
           src={img}
-          className="w-full h-auto object-cover rounded-lg shadow-lg"
+          className="w-full h-auto object-cover rounded-lg "
           alt="Shoes and Phone"
         />
       </div>
