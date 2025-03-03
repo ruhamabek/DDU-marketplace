@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Menu } from "lucide-react";
 import {
@@ -12,6 +11,13 @@ import { Separator } from "@/components/ui/separator";
 
 // Header component
 function Header() {
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="relative bg-[#38474E] text-black py-6">
       {/* Diagonal Stripe Effect */}
@@ -26,31 +32,40 @@ function Header() {
       {/* Navigation Bar */}
       <div className="relative z-10 flex items-center justify-between px-8 py-4 max-w-screen-2xl mx-auto">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <a href="#" className="flex items-center">
           <img src={logo} className="h-28 md:h-28 w-auto" alt="DirePick Logo" />
-        </Link>
+        </a>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex space-x-10 font-medium text-lg lg:text-xl">
-          <Link to="/popular" className="hover:text-blue-500 transition">
+          <button
+            onClick={() => scrollToSection("popular")}
+            className="hover:text-blue-500 transition"
+          >
             Popular
-          </Link>
-          <Link to="/about" className="hover:text-blue-500 transition">
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="hover:text-blue-500 transition"
+          >
             About Us
-          </Link>
-          <Link to="/contact" className="hover:text-blue-500 transition">
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="hover:text-blue-500 transition"
+          >
             Contact Us
-          </Link>
+          </button>
         </nav>
 
         {/* Sign In Button (Desktop) */}
         <div className="hidden md:block">
-          <Link
-            to="/signin"
+          <a
+            href="/signin"
             className="text-black font-medium px-6 py-3 rounded-md hover:bg-blue-500 hover:text-white transition text-lg lg:text-xl"
           >
             Sign In
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Navigation - Shadcn Sheet Menu */}
@@ -61,36 +76,40 @@ function Header() {
             </SheetTrigger>
 
             <SheetContent className="space-y-4 bg-white text-black items-center">
-              <SheetTitle className="text-3xl font-bold mt-12 ">
-                Menu
-              </SheetTitle>
+              <SheetTitle className="text-3xl font-bold mt-12">Menu</SheetTitle>
               <Separator />
 
               <SheetDescription className="flex flex-col gap-6">
-                <Link
-                  to="/popular"
+                <button
+                  onClick={() => {
+                    scrollToSection("popular");
+                  }}
                   className="text-lg font-medium hover:text-blue-500"
                 >
                   Popular
-                </Link>
-                <Link
-                  to="/about"
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection("about");
+                  }}
                   className="text-lg font-medium hover:text-blue-500"
                 >
                   About Us
-                </Link>
-                <Link
-                  to="/contact"
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection("contact");
+                  }}
                   className="text-lg font-medium hover:text-blue-500"
                 >
                   Contact Us
-                </Link>
-                <Link
-                  to="/signin"
+                </button>
+                <a
+                  href="/signin"
                   className="mt-4 text-white bg-blue-500 font-medium text-lg text-center py-2 rounded-md hover:bg-blue-600 px-48"
                 >
                   Sign In
-                </Link>
+                </a>
               </SheetDescription>
             </SheetContent>
           </Sheet>

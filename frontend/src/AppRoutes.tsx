@@ -4,16 +4,18 @@ import HomePage from "./pages/HomePage";
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Layout showHero>
-            <HomePage />
-          </Layout>
-        }
-      />
-    </Routes>
+    <div className=" bg-[#38474E] ">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout showHero>
+              <HomePage />
+            </Layout>
+          }
+        />
+      </Routes>{" "}
+    </div>
   );
 }
 
