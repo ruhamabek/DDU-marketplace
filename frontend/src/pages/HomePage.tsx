@@ -1,11 +1,20 @@
+import { Separator } from "@/components/ui/separator";
 import iphone from "../assets/Apple-iPhone-16-Pro-Photoroom.png";
 import vivo from "../assets/Samsung-glaxy-phone-Photoroom.png";
 import asus from "../assets/asus-rog-zyphyrus-Photoroom.png";
 import vivo1 from "../assets/vivo-mobile-phone-Photoroom.png";
 import { useEffect, useState } from "react";
+import { Instagram, Twitter, Send } from "lucide-react";
+import { ReactNode } from "react";
+
+type Props = {
+  id: string;
+  children: ReactNode;
+  className: string;
+};
 
 // Reusable section with fade-in animation on scroll
-const Section = ({ id, children, className = "" }) => {
+const Section = ({ id, children, className = "" }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -33,10 +42,17 @@ const Section = ({ id, children, className = "" }) => {
 };
 
 const HomePage = () => {
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="space-y-16 ">
       {/* Popular Products Section */}
-      <Section id="popular" className="py-16 text-center">
+      <Section id="popular" className="py-16 text-center mb-30">
         <h2 className="text-4xl font-bold mb-8 text-white">Popular Products</h2>
         <div className="flex flex-row gap-12 justify-center">
           <div className="p-6 flex justify-center items-center">
@@ -52,14 +68,14 @@ const HomePage = () => {
       </Section>
 
       {/* About Us Section */}
-      <Section id="about" className="py-16 ">
+      <Section id="about" className="py-19">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6 md:px-12">
           {/* Left Side - Image */}
           <div className="w-full md:w-1/2">
             <img
               src={vivo1}
               alt="About Us Image"
-              className="w-full object-cover "
+              className="w-full object-cover"
             />
           </div>
 
@@ -97,19 +113,98 @@ const HomePage = () => {
       </Section>
 
       {/* Contact Us Section */}
-      <Section id="contact" className="py-16">
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8 space-y-6 border border-gray-200">
-          <h2 className="text-4xl font-bold text-center">Contact Us</h2>
-          <p className="text-lg text-center text-gray-700">
-            Have questions? Reach out at{" "}
-            <a
-              href="mailto:support@direpick.com"
-              className="text-blue-500 font-medium"
-            >
-              support@direpick.com
-            </a>
-          </p>
-        </div>
+      <Section id="contact" className="mt-60">
+        <Separator />
+        <footer className="py-8">
+          <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+            {/* Left Section - Branding & Description */}
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold tracking-wider">
+                DirePick<span className="text-white">.</span>
+              </h2>
+              <p className="text-sm leading-relaxed">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </p>
+            </div>
+
+            {/* Middle Section - Links */}
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold">COMPANY</h3>
+              <ul className="space-y-1 text-sm">
+                <li>
+                  <a
+                    href="#"
+                    className="hover:underline"
+                    onClick={() => scrollToSection("popular")}
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:underline"
+                    onClick={() => scrollToSection("about")}
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    Terms and Conditions
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    Privacy Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Right Section - Contact Info */}
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold">GET IN TOUCH</h3>
+              <p className="text-sm">+251-947-169-355</p>
+              <p className="text-sm">contact@DirePick.com</p>
+              <div className="flex space-x-4 mt-4 ">
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-white"
+                >
+                  <Instagram size={24} />
+                </a>
+                <a
+                  href="https://t.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-white"
+                >
+                  <Send size={24} />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-white"
+                >
+                  <Twitter size={24} />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Copyright Section */}
+          <div className="text-center text-xs text-white mt-6 border-t pt-4">
+            Copyright © {new Date().getFullYear()} DirePick.com - All Rights
+            Reserved.
+          </div>
+        </footer>
       </Section>
     </div>
   );
