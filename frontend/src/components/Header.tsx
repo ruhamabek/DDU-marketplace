@@ -8,6 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+import { AuthCard } from "@daveyplate/better-auth-ui";
 
 // Header component
 function Header() {
@@ -104,12 +105,22 @@ function Header() {
                 >
                   Contact Us
                 </button>
-                <a
-                  href="/signin"
-                  className="mt-4 text-white bg-blue-500 font-medium text-lg text-center py-2 rounded-md hover:bg-blue-600 px-48"
+
+                <button
+                  onClick={() => (
+                    <AuthCard
+                      view="signIn"
+                      classNames={{
+                        base: "border-2 border-destructive max-w-xs",
+                        header: "bg-destructive/30",
+                        title: "text-xl text-destructive font-semibold",
+                        footerLink: "text-destructive hover:text-foreground",
+                      }}
+                    />
+                  )}
                 >
                   Sign In
-                </a>
+                </button>
               </SheetDescription>
             </SheetContent>
           </Sheet>
