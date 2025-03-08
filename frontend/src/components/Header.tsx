@@ -8,7 +8,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { AuthCard } from "@daveyplate/better-auth-ui";
 
 // Header component
 function Header() {
@@ -61,12 +60,14 @@ function Header() {
 
         {/* Sign In Button (Desktop) */}
         <div className="hidden md:block">
-          <a
-            href="/signin"
-            className="text-black font-medium px-6 py-3 rounded-md hover:bg-blue-500 hover:text-white transition text-lg lg:text-xl"
+          <button
+            onClick={() => {
+              window.location.href = "http://localhost:5173/auth/sign-in";
+            }}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
           >
             Sign In
-          </a>
+          </button>
         </div>
 
         {/* Mobile Navigation - Shadcn Sheet Menu */}
@@ -82,42 +83,30 @@ function Header() {
 
               <SheetDescription className="flex flex-col gap-6">
                 <button
-                  onClick={() => {
-                    scrollToSection("popular");
-                  }}
+                  onClick={() => scrollToSection("popular")}
                   className="text-lg font-medium hover:text-blue-500"
                 >
                   Popular
                 </button>
                 <button
-                  onClick={() => {
-                    scrollToSection("about");
-                  }}
+                  onClick={() => scrollToSection("about")}
                   className="text-lg font-medium hover:text-blue-500"
                 >
                   About Us
                 </button>
                 <button
-                  onClick={() => {
-                    scrollToSection("contact");
-                  }}
+                  onClick={() => scrollToSection("contact")}
                   className="text-lg font-medium hover:text-blue-500"
                 >
                   Contact Us
                 </button>
 
+                {/* Mobile Sign In Button */}
                 <button
-                  onClick={() => (
-                    <AuthCard
-                      view="signIn"
-                      classNames={{
-                        base: "border-2 border-destructive max-w-xs",
-                        header: "bg-destructive/30",
-                        title: "text-xl text-destructive font-semibold",
-                        footerLink: "text-destructive hover:text-foreground",
-                      }}
-                    />
-                  )}
+                  onClick={() => {
+                    window.location.href = "http://localhost:5173/auth/sign-in";
+                  }}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
                 >
                   Sign In
                 </button>
