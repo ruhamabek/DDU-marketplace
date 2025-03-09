@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import { db } from "../db/client"; // Import db, NOT client
+import { db } from "../db/client";
 
 export const auth = betterAuth({
   database: mongodbAdapter(db),
@@ -13,10 +13,4 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
-  trustedOrigins: [
-    "http://localhost:7000",
-    "http://localhost:7000/auth",
-    "http://localhost:7001",
-    "http://localhost:7001/auth",
-  ],
 });

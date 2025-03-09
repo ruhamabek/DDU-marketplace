@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import HomePage from "./pages/HomePage";
 import LoginScreen from "./auth/login/Page";
@@ -16,7 +16,7 @@ function AppRoutes() {
             </Layout>
           }
         />
-        <Route path="/signin" element={<LoginScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
       </Routes>{" "}
     </div>

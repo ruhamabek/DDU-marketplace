@@ -1,46 +1,44 @@
-import { Request, Response, NextFunction } from "express";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-interface Session {
-  user?: any;
-  session?: any;
+interface Credentials {
+  email: string;
+  password: string;
 }
 
-const authMiddleware = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const pathname = req.path;
+interface Callbacks {
+  onRequest: () => void;
+  onSuccess: (data: any) => void;
+  onError: (error: any) => void;
+}
 
-  try {
-    const response = await axios.get<Session>(
-      "http://localhost:7001/api/auth/get-session",
-      {
-        headers: {
-          cookie: req.headers.cookie || "",
-        },
-      }
-    );
+interface SocialSignInParams {
+  provider: string;
+}
 
-    const session = response.data?.session;
+const authClient = axios.create({
+  baseURL: "http://localhost:7001/api", // Ensure this is the correct base URL for your backend
+  withCredentials: true,
+});
 
-    if (!session && pathname.startsWith("/dashboard")) {
-      return res.redirect("/login");
+const signIn = {
+  email: async (
+    credentials: Credentials,
+    callbacks: Callbacks
+  ): Promise<void> => {
+    try {
+      callbacks.onRequest();
+      const response: AxiosResponse<any> = await authClient.post(
+        "/auth/sign-in/email",
+        credentials
+      );
+      callbacks.onSuccess(response.data);
+    } catch (error: any) {
+      callbacks.onError(error.response?.data);
     }
-
-    if (
-      session &&
-      (pathname === "/login" || pathname === "/register" || pathname === "/")
-    ) {
-      return res.redirect("/");
-    }
-
-    next();
-  } catch (error) {
-    console.error("Error fetching session:", error);
-    next(error);
-  }
+  },
+  social: async ({ provider }: SocialSignInParams): Promise<void> => {
+    window.location.href = `${authClient.defaults.baseURL}/auth/sign-in/${provider}`;
+  },
 };
 
-export default authMiddleware;
+export default { signIn };

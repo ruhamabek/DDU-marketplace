@@ -138,7 +138,7 @@ export default function LoginScreen() {
                 Don&apos;t have an account?{" "}
               </span>
               <Link
-                to="/signin"
+                to="/register"
                 className="text-foreground hover:underline font-medium"
               >
                 Sign up

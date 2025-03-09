@@ -5,23 +5,23 @@ import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 
 const app = express();
-app.all("/api/auth/*", toNodeHandler(auth));
-app.use(cors());
+const PORT = 7000; // Run everything on a single port
 
+app.use(cors());
 app.use(express.json());
 
-app.get("/health", async (req: Request, res: Response) => {
-  res.send({ message: "health OK!" });
+// Mount Better Auth
+app.all("/api/auth/*", toNodeHandler(auth));
+
+// Your other backend routes
+app.get("/health", (req: Request, res: Response) => {
+  res.send({ message: "Backend server health OK!" });
 });
 
-app.get("/", async (req: Request, res: Response) => {
-  res.send({ message: "hi" });
+app.get("/", (req: Request, res: Response) => {
+  res.send({ message: "Welcome to the backend API" });
 });
 
-app.listen(7000, () => {
-  console.log(`Better Auth app listening on port 7000`);
-});
-
-app.listen(7001, () => {
-  console.log("server started on localhost:7001");
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

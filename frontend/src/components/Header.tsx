@@ -33,9 +33,9 @@ function Header() {
       {/* Navigation Bar */}
       <div className="relative z-10 flex items-center justify-between px-8 py-4 max-w-screen-2xl mx-auto">
         {/* Logo */}
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={logo} className="h-28 md:h-28 w-auto" alt="DirePick Logo" />
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex space-x-10 font-medium text-lg lg:text-xl">
@@ -62,10 +62,10 @@ function Header() {
         {/* Sign In Button (Desktop) */}
         <div className="hidden md:block">
           <Link
-            to={"/login"}
-            className=" dark:bg-white px-5 md:min-w-[140px] bg-black/90 dark:text-black/90 md:py-3 py-[5px]  rounded-md font-normal text-sm md:text-base md:font-medium text-white "
+            to="/login"
+            className="dark:bg-white px-5 md:min-w-[140px] bg-black/90 dark:text-black/90 md:py-3 py-[5px] rounded-md font-normal text-sm md:text-base md:font-medium text-white"
           >
-            sign in
+            Sign In
           </Link>
         </div>
 
@@ -101,14 +101,12 @@ function Header() {
                 </button>
 
                 {/* Mobile Sign In Button */}
-                <button
-                  onClick={() => {
-                    window.location.href = "http://localhost:5173/auth/sign-in";
-                  }}
+                <Link
+                  to="/login"
                   className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
                 >
                   Sign In
-                </button>
+                </Link>
               </SheetDescription>
             </SheetContent>
           </Sheet>
