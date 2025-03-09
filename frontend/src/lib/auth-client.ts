@@ -1,10 +1,7 @@
-import { createAuthClient } from "better-auth/client";
-const authClient = createAuthClient();
+import { createAuthClient } from "better-auth/react";
 
-const signIn = async () => {
-  const data = await authClient.signIn.social({
-    provider: "google",
-  });
-};
+const authClient = createAuthClient({
+  baseURL: "http://localhost:5173",
+});
 
-export { authClient, signIn };
+export default authClient;

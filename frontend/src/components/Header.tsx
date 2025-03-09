@@ -8,6 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 
 // Header component
 function Header() {
@@ -60,14 +61,12 @@ function Header() {
 
         {/* Sign In Button (Desktop) */}
         <div className="hidden md:block">
-          <button
-            onClick={() => {
-              window.location.href = "http://localhost:5173/auth/sign-in";
-            }}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          <Link
+            to={"/login"}
+            className=" dark:bg-white px-5 md:min-w-[140px] bg-black/90 dark:text-black/90 md:py-3 py-[5px]  rounded-md font-normal text-sm md:text-base md:font-medium text-white "
           >
-            Sign In
-          </button>
+            sign in
+          </Link>
         </div>
 
         {/* Mobile Navigation - Shadcn Sheet Menu */}
